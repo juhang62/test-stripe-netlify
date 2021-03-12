@@ -1,5 +1,5 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const endpointSecret = 'whsec_eN6TtdCq7DOvNsHEMLhAJ8wqbsjpu65a'; //stripe
+const endpointSecret = 'whsec_eN6TtdCq7DOvNsHEMLhAJ8wqbsjpu65a'; //this is from stripe cli; need to add the real one to Environment variables
 const faunadb = require('faunadb')
 const q = faunadb.query
 const client = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET })
