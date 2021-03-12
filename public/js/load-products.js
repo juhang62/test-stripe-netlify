@@ -4,17 +4,17 @@ import { handleFormSubmission } from './stripe-purchase.js';
     const template = document.querySelector('#product');
     const product = template.content.cloneNode(true);
   
-    product.querySelector('h2').innerText = item.name;
-    product.querySelector('.description').innerText = item.description;
-    product.querySelector('[name=sku]').value = item.sku;
-    product.querySelector('.price').innerText = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: item.currency,
-    }).format((item.amount / 100).toFixed(2));
+    product.querySelector('h2').innerText = item.data.name;
+    product.querySelector('.description').innerText = 'money dontated $' + item.data.nov;
+    product.querySelector('[name=name]').value = item.data.name;
+    // product.querySelector('.price').innerText = new Intl.NumberFormat('en-US', {
+    //   style: 'currency',
+    //   currency: item.currency,
+    // }).format((item.amount / 100).toFixed(2));
   
-    const img = product.querySelector('img');
-    img.src = item.image;
-    img.alt = item.name;
+    // const img = product.querySelector('img');
+    // img.src = item.image;
+    // img.alt = item.name;
 
     const form = product.querySelector('form');
     form.addEventListener('submit', handleFormSubmission);
@@ -24,7 +24,7 @@ import { handleFormSubmission } from './stripe-purchase.js';
 
 
 export async function loadProducts() {
-  const data = await fetch('/.netlify/functions/get-products')
+  const data = await fetch('/.netlify/functions/get-items')
     .then((res) => res.json())
     .catch((err) => console.error(err));
 

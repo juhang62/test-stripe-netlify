@@ -3,10 +3,10 @@ export async function handleFormSubmission(event) {
     const form = new FormData(event.target);
   
     const data = {
-      sku: form.get('sku'),
+      name: form.get('name'),
       quantity: Number(form.get('quantity')),
     };
-  
+    //debugger
     const response = await fetch('/.netlify/functions/create-checkout', {
       method: 'POST',
       headers: {
