@@ -27,7 +27,7 @@ exports.handler = async ({ body, headers }) => {
             const item=lineItems.data[0].description
             const quantity=lineItems.data[0].quantity
 
-            client.query(
+            await client.query(
               // q.Get(q.Ref(q.Collection("posts"), "292749554163384841"))
           
               q.Get(
