@@ -4,7 +4,7 @@ const endpointSecret = process.env.STRIPE_SIGN_KEY //change to stripe cli signin
 const faunadb = require('faunadb')
 const q = faunadb.query
 const client = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET })
-
+var errmsg
 exports.handler = async ({ body, headers }) => {
     //console.log('got it')
     try {
@@ -39,10 +39,10 @@ exports.handler = async ({ body, headers }) => {
                     )
                 )
             }
-        )
+        ).catch((err) => { errmsg=err})
         return {
             statusCode: 200,
-            body: JSON.stringify({ received: true, db: process.env.FAUNADB_ADMIN_SECRET }),
+            body: JSON.stringify({ received: true, msg: errmsg }),
         };
     } catch (err) {
         return {
