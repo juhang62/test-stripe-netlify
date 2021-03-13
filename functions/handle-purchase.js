@@ -1,6 +1,6 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-const endpointSecret = process.env.STRIPE_SIGN_KEY //change to stripe cli signing key when testing locally
-//'whsec_eN6TtdCq7DOvNsHEMLhAJ8wqbsjpu65a'; //this is from stripe cli; 
+//const endpointSecret = process.env.STRIPE_SIGN_KEY //change to stripe cli signing key when testing locally
+const endpointSecret = 'whsec_eN6TtdCq7DOvNsHEMLhAJ8wqbsjpu65a'; //this is from stripe cli; 
 const faunadb = require('faunadb')
 const q = faunadb.query
 const client = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET })
@@ -17,10 +17,10 @@ exports.handler = async ({ body, headers }) => {
     // only do stuff if this is a successful Stripe Checkout purchase
     if (stripeEvent.type === 'checkout.session.completed') {
       //console.log(stripeEvent.data.object.id)
-        await stripe.checkout.sessions.listLineItems(
+        stripe.checkout.sessions.listLineItems(
         stripeEvent.data.object.id,
         { limit: 5 },
-        function(err, lineItems) {
+        async function(err, lineItems) {
           // asynchronously called
           if (err==null){
             //console.log(lineItems)
