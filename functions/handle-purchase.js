@@ -1,6 +1,6 @@
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
-//const endpointSecret = process.env.STRIPE_SIGN_KEY //change to stripe cli signing key when testing locally
-const endpointSecret = 'whsec_eN6TtdCq7DOvNsHEMLhAJ8wqbsjpu65a'; //this is from stripe cli; 
+const endpointSecret = process.env.STRIPE_SIGN_KEY //change to stripe cli signing key when testing locally
+//const endpointSecret = 'whsec_eN6TtdCq7DOvNsHEMLhAJ8wqbsjpu65a'; //this is from stripe cli; 
 const faunadb = require('faunadb')
 const q = faunadb.query
 const client = new faunadb.Client({ secret: process.env.FAUNADB_ADMIN_SECRET })
