@@ -13,7 +13,7 @@ exports.handler = async ({ body, headers }) => {
         const item = "Vue"
         const quantity = 1
 
-        testout1=client.query(
+        const out= await client.query(
             // q.Get(q.Ref(q.Collection("posts"), "292749554163384841"))
 
            q.Get(
@@ -28,7 +28,7 @@ exports.handler = async ({ body, headers }) => {
                 //console.log(result.data)
                 let name = result.data.name
                 let nov = result.data.nov
-                testout2 = client.query(
+                client.query(
                     q.Update(
                         q.Select("ref",
                             q.Get(
@@ -41,10 +41,10 @@ exports.handler = async ({ body, headers }) => {
                     )
                 )
             }
-        ).catch((err) => { errmsg=err})
+        ).catch((err)=>{errmsg=err})
         return {
             statusCode: 200,
-            body: JSON.stringify({ received: true, testout1:testout1, testout2: testout2, msg: errmsg }),
+            body: JSON.stringify({ received: true, testout: out, msg: errmsg }),
         };
     } catch (err) {
         return {
