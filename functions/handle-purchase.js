@@ -17,7 +17,7 @@ exports.handler = async ({ body, headers }) => {
     // only do stuff if this is a successful Stripe Checkout purchase
     if (stripeEvent.type === 'checkout.session.completed') {
       //console.log(stripeEvent.data.object.id)
-        stripe.checkout.sessions.listLineItems(
+        await stripe.checkout.sessions.listLineItems(
         stripeEvent.data.object.id,
         { limit: 5 },
         function(err, lineItems) {
