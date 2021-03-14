@@ -12,7 +12,7 @@ exports.handler = async ({ body, headers }) => {
     try {
         const item = "Vue"
         const quantity = 1
-
+        //await made it work when deployed
         const out= await client.query(
             // q.Get(q.Ref(q.Collection("posts"), "292749554163384841"))
 
